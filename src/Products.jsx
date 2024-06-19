@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom';
 import { useFavorites } from './FavoritesContext';
 import useFetch from './useFetch';
 
+import heartSolid from '../assets/heart-solid.svg';
+import heartRegular from '../assets/heart-regular.svg';
+
 const Products = ({ selectedCategory }) => {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const url = selectedCategory
@@ -28,11 +31,11 @@ const Products = ({ selectedCategory }) => {
       {products.map((product) => (
         <li key={product.id} className="products--item">
           <div className="favorite-icon" onClick={() => handleFavoriteClick(product)}>
-            {isFavorite(product.id) ? (
-              <div className="heart heart-solid">♥</div>
-            ) : (
-              <div className="heart heart--regular">♡</div>
-            )}
+            <img
+              src={isFavorite(product.id) ? heartSolid : heartRegular}
+              alt={isFavorite(product.id) ? "Remove from favorites" : "Add to favorites"}
+              className="heart-icon"
+            />
           </div>
           <Link to={`/product/${product.id}`}>
             <div className="product">

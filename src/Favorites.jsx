@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useFavorites } from './FavoritesContext';
 
+import heartSolid from '../assets/heart-solid.svg';
+
 const Favorites = () => {
   const { favorites, productsData, removeFavorite } = useFavorites();
 
@@ -16,7 +18,7 @@ const Favorites = () => {
         favorites.map((id) => (
           <li key={id} className="products--item">
             <div className="favorite-icon" onClick={() => handleFavoriteClick(id)}>
-              <div className="heart heart-solid">♥</div>
+            <img className="heart-icon" src={heartSolid} alt="Remove from favorites" />
             </div>
             
             {productsData[id] ? (
